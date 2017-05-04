@@ -1,0 +1,23 @@
+mm_cmf_admin_routing_addon_noderoute:
+    path:     /
+    defaults: { _controller: MMCmfAdminRoutingAddonBundle:NodeRouteAdmin:index }
+
+mm_cmf_admin_routing_addon_noderoute_new:
+    path:     /{node_route_type}/new
+    defaults: { _controller: MMCmfAdminRoutingAddonBundle:NodeRouteAdmin:new, node_route_type: 'alias' }
+
+mm_cmf_admin_routing_addon_noderoute_create:
+    path:     /{node_route_type}/create
+    defaults: { _controller: MMCmfAdminRoutingAddonBundle:NodeRouteAdmin:create, node_route_type: 'alias' }
+
+mm_cmf_admin_routing_addon_noderoute_edit:
+    path:     /{id}/edit
+    defaults: { _controller: MMCmfAdminRoutingAddonBundle:NodeRouteAdmin:edit }
+
+mm_cmf_admin_routing_addon_noderoute_update:
+    path:     /{id}/update
+    defaults: { _controller: MMCmfAdminRoutingAddonBundle:NodeRouteAdmin:update }
+
+mm_cmf_admin_routing_addon_noderoute_delete:
+    path:     /{id}/delete
+    defaults: { _controller: MMCmfAdminRoutingAddonBundle:NodeRouteAdmin:delete }

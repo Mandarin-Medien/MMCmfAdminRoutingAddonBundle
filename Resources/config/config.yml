@@ -1,0 +1,3 @@
+twig:
+    globals:
+        node_route_factory: '@mm_cmf_routing.node_route_factory'

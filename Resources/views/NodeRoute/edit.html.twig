@@ -1,0 +1,39 @@
+{% extends '@MMAdmin/Admin/page.html.twig' %}
+
+{% set pageHeadline = "Routingmanagment Section" %}
+{% set pageSubline = "" %}
+
+{% block admin_page_body %}
+    <div class="box box-default">
+        <div class="box-header"><h2 class="box-title">Route bearbeiten</h2></div>
+        <div class="box-body">
+            {% block admin_content %}
+                {{ form_start(form) }}
+
+                {% set buttongroup %}
+                    <div class="form-actions clearfix">
+                        {{ form_widget(form.submit) }}
+                        {{ form_widget(form.save_and_add) }}
+                        {{ form_widget(form.save_and_back) }}
+
+                        <a class="btn btn-warning btn-abort" href="{{ path('mm_cmf_admin_routing_addon_noderoute') }}">
+                            <i class="fa fa-close"></i> abbrechen
+                        </a>
+                    </div>
+                {% endset %}
+
+                <div class="form-main">
+                    {{ form_rest(form) }}
+                    {{ form_errors(form) }}
+                </div>
+
+                <div class="form-foot">
+                    {{ buttongroup }}
+                </div>
+
+                {{ form_end(form) }}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
