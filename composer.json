@@ -21,6 +21,7 @@
   "target-dir": "MandarinMedien/MMCmfAdminPageAddonBundle",
   "require": {
     "mandarinmedien/mmcmfcontentbundle": "^0.1",
+    "mandarinmedien/mmcmfroutingbundle": "^0.1",
     "mandarinmedien/mmadminbundle": "@dev-master"
   },
   "suggest": {
