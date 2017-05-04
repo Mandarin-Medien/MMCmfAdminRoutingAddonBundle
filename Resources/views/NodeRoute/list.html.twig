@@ -10,12 +10,15 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-edit"></i> {{ 'additional routes'|trans }}</h3>
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                             {{ 'new route'|trans }}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                             {% for type in types %}
-                                <li><a href="{{ path('mm_cmf_admin_routing_addon_noderoute_new', {'node_route_type' : type}) }}">{{ type|trans }} erstellen</a></li>
+                                <li>
+                                    <a href="{{ path('mm_cmf_admin_routing_addon_noderoute_new', {'node_route_type' : type}) }}">{{ 'create '~type|trans }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -23,26 +26,39 @@
                 <div class="box-body">
                     <table class="table table-responsive">
                         <thead>
-                            <tr>
-                                <th>Pfad</th>
-                                <th>Typ</th>
-                                <th>Ziel</th>
-                                <th>&nbsp;</th>
-                            </tr>
+                        <tr>
+                            <th>Pfad</th>
+                            <th>Typ</th>
+                            <th>Ziel</th>
+                            <th>&nbsp;</th>
+                        </tr>
                         </thead>
                         <tbody>
                         {% for noderoute in noderoutes %}
-
                             {% set type = factory.discriminatorByClass(noderoute) %}
                             {% if type != 'auto' %}
                                 <tr>
                                     <td>{{ noderoute.route }}</td>
                                     <td>{{ factory.discriminatorByClass(noderoute)|trans }}</td>
-                                    <td>{% if noderoute.node %}<a href="{{ path("mm_cmf_admin_page_addon_page_edit", {'id' : noderoute.node.id}) }}">{{ noderoute.node }}</a>{% else %}extern{% endif %}</td>
+                                    <td>
+                                        {% if noderoute.node %}
+                                            {% if isPageAddonEnabled %}
+                                                <a href="{{ path("mm_cmf_admin_page_addon_page_edit", {'id' : noderoute.node.id}) }}">{{ noderoute.node }}</a>
+                                            {% else %}
+                                                {{ noderoute.node }}
+                                            {% endif %}
+                                        {% else %}
+                                            extern
+                                        {% endif %}
+                                    </td>
                                     <td align="right">
                                         {% spaceless %}
-                                        <a class="btn btn-default" href="{{ path("mm_cmf_admin_routing_addon_noderoute_edit", {"id" : noderoute.id}) }}"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{{ path("mm_cmf_admin_routing_addon_noderoute_delete", {"id" : noderoute.id }) }}"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-default"
+                                               href="{{ path("mm_cmf_admin_routing_addon_noderoute_edit", {"id" : noderoute.id}) }}"><i
+                                                        class="fa fa-edit"></i></a>
+                                            <a class="btn btn-danger"
+                                               href="{{ path("mm_cmf_admin_routing_addon_noderoute_delete", {"id" : noderoute.id }) }}"><i
+                                                        class="fa fa-trash"></i></a>
                                         {% endspaceless %}
                                     </td>
                                 </tr>
@@ -57,7 +73,8 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-default">
-                <div class="box-header with-border"><h3 class="box-title"><i class="fa fa-edit"></i> {{ 'default routes'|trans }}</h3></div>
+                <div class="box-header with-border"><h3 class="box-title"><i
+                                class="fa fa-edit"></i> {{ 'default routes'|trans }}</h3></div>
                 <div class="box-body">
                     <table class="table table-responsive">
                         <thead>
@@ -72,10 +89,20 @@
 
                             {% set type = factory.discriminatorByClass(noderoute) %}
                             {% if type == 'auto' %}
-                                <tr >
+                                <tr>
                                     <td>{{ noderoute.route }}</td>
                                     <td>{{ factory.discriminatorByClass(noderoute)|trans }}</td>
-                                    <td>{% if noderoute.node %}<a href="{{ path("mm_cmf_admin_page_addon_page_edit", {'id' : noderoute.node.id}) }}">{{ noderoute.node }}</a>{% else %}extern{% endif %}</td>
+                                    <td>
+                                        {% if noderoute.node %}
+                                            {% if isPageAddonEnabled %}
+                                                <a href="{{ path("mm_cmf_admin_page_addon_page_edit", {'id' : noderoute.node.id}) }}">{{ noderoute.node }}</a>
+                                            {% else %}
+                                                {{ noderoute.node }}
+                                            {% endif %}
+                                        {% else %}
+                                            extern
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% endif %}
                         {% endfor %}

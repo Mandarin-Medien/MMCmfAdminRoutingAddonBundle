@@ -32,10 +32,30 @@ class NodeRouteAdminController extends BaseController
         return $this->render("MMCmfAdminRoutingAddonBundle:NodeRoute:list.html.twig", array(
             'noderoutes' => $entities,
             'factory' => $this->get('mm_cmf_routing.node_route_factory'),
-            'types' => $this->get('mm_cmf_routing.node_route_factory')->getDiscriminators()
+            'types' => $this->get('mm_cmf_routing.node_route_factory')->getDiscriminators(),
+            'isPageAddonEnabled' => $this->isPageAddonEnabled()
         ));
     }
 
+    /**
+     * checks if the MMCmf/Admin/RoutingAddonBundle is installed to show further configurations
+     *
+     * @return bool|null
+     */
+    protected function isPageAddonEnabled()
+    {
+        static $pageAddonIsEnabled = null;
+
+        if ($pageAddonIsEnabled === null) {
+
+            $pageAddonIsEnabled = array_key_exists(
+                'MMCmfAdminPageAddonBundle',
+                $this->container->getParameter('kernel.bundles')
+            );
+        }
+        return $pageAddonIsEnabled;
+
+    }
 
     /**
      * @param Request $request
