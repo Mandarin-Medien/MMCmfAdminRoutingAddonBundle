@@ -17,6 +17,16 @@
 ...
 ```
 
+### Append to src/MY_CUSTOM_ADMIN_BUNDLE/config/config.yml
+
+```
+...
+
+  - { resource: "@MMCmfAdminRoutingAddonBundle/Resources/config/config.yml" }
+
+...
+```
+
 ### Append to src/MY_CUSTOM_ADMIN_BUNDLE/config/routing.yml
 
 ```
