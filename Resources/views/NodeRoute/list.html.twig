@@ -41,7 +41,7 @@
                                     <td>{{ noderoute.route }}</td>
                                     <td>{{ factory.discriminatorByClass(noderoute)|trans }}</td>
                                     <td>
-                                        {% if noderoute.node %}
+                                        {#% if noderoute.node %}
                                             {% if isPageAddonEnabled %}
                                                 <a href="{{ path("mm_cmf_admin_page_addon_page_edit", {'id' : noderoute.node.id}) }}">{{ noderoute.node }}</a>
                                             {% else %}
@@ -49,7 +49,7 @@
                                             {% endif %}
                                         {% else %}
                                             extern
-                                        {% endif %}
+                                        {% endif %#}
                                     </td>
                                     <td align="right">
                                         {% spaceless %}
@@ -93,7 +93,7 @@
                                     <td>{{ noderoute.route }}</td>
                                     <td>{{ factory.discriminatorByClass(noderoute)|trans }}</td>
                                     <td>
-                                        {% if noderoute.node %}
+                                        {#% if noderoute.node %}
                                             {% if isPageAddonEnabled %}
                                                 <a href="{{ path("mm_cmf_admin_page_addon_page_edit", {'id' : noderoute.node.id}) }}">{{ noderoute.node }}</a>
                                             {% else %}
@@ -101,7 +101,7 @@
                                             {% endif %}
                                         {% else %}
                                             extern
-                                        {% endif %}
+                                        {% endif %#}
                                     </td>
                                 </tr>
                             {% endif %}

@@ -32,12 +32,12 @@ class NodeRouteType extends AbstractType
             ->add('route');
 
 
-        if (get_class($options['data']) != ExternalNodeRoute::class) {
+        /*if (get_class($options['data']) != ExternalNodeRoute::class) {
             $builder->add('node', EntityType::class, array(
                 'class' => Page::class,
                 'required' => true
             ));
-        }
+        }*/
 
         if (get_class($options['data']) == RedirectNodeRoute::class) {
             $builder->add('statusCode', ChoiceType::class, array(

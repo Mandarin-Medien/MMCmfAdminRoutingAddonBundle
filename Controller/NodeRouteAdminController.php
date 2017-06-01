@@ -29,6 +29,8 @@ class NodeRouteAdminController extends BaseController
 
         $entities = $em->getRepository(NodeRoute::class)->findAll();
 
+        $this->get('mm_cmf_routing.node_resolver');
+
         return $this->render("MMCmfAdminRoutingAddonBundle:NodeRoute:list.html.twig", array(
             'noderoutes' => $entities,
             'factory' => $this->get('mm_cmf_routing.node_route_factory'),
@@ -75,7 +77,7 @@ class NodeRouteAdminController extends BaseController
         $factory = $this->get('mm_cmf_routing.node_route_factory');
 
         $entity = $factory->createNodeRoute($node_route_type);
-        $entity->setNode($page);
+        $page->addRoute($entity);
 
         if ($entity) {
 
@@ -121,6 +123,8 @@ class NodeRouteAdminController extends BaseController
     {
 
         $nodeRoute = $this->getDoctrine()->getRepository(NodeRoute::class)->find($id);
+
+        dump($this->get('mm_cmf_routing.node_resolver')->findNode($nodeRoute));
 
         return $this->render("MMCmfAdminRoutingAddonBundle:NodeRoute:edit.html.twig", array(
             'form' => $this->createEditForm($nodeRoute)->createView(),
