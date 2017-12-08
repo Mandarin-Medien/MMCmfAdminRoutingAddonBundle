@@ -15,7 +15,7 @@
                             {{ 'new route'|trans }}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            {% for type in types %}
+                            {% for type in data.types %}
                                 <li>
                                     <a href="{{ path('mm_cmf_admin_routing_addon_noderoute_new', {'node_route_type' : type}) }}">{{ 'create '~type|trans }}</a>
                                 </li>
@@ -34,12 +34,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for noderoute in noderoutes %}
-                            {% set type = factory.discriminatorByClass(noderoute) %}
+                        {% for noderoute in data.noderoutes %}
+                            {% set type = node_route_factory.discriminatorByClass(noderoute) %}
                             {% if type != 'auto' %}
                                 <tr>
                                     <td>{{ noderoute.route }}</td>
-                                    <td>{{ factory.discriminatorByClass(noderoute)|trans }}</td>
+                                    <td>{{ type|trans }}</td>
                                     <td>
                                         {#% if noderoute.node %}
                                             {% if isPageAddonEnabled %}
@@ -85,13 +85,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for noderoute in noderoutes %}
+                        {% for noderoute in data.noderoutes %}
 
-                            {% set type = factory.discriminatorByClass(noderoute) %}
+                            {% set type = node_route_factory.discriminatorByClass(noderoute) %}
                             {% if type == 'auto' %}
                                 <tr>
                                     <td>{{ noderoute.route }}</td>
-                                    <td>{{ factory.discriminatorByClass(noderoute)|trans }}</td>
+                                    <td>{{ type|trans }}</td>
                                     <td>
                                         {#% if noderoute.node %}
                                             {% if isPageAddonEnabled %}

@@ -10,23 +10,25 @@
             {% block admin_content %}
                 {% set buttongroup %}
                     <div class="form-actions clearfix">
-                        {{ form_widget(form.submit) }}
-                        {{ form_widget(form.save_and_add) }}
-                        {{ form_widget(form.save_and_back) }}
+                        {{ form_widget(data.form.submit) }}
+                        {{ form_widget(data.form.save_and_add) }}
+                        {{ form_widget(data.form.save_and_back) }}
 
                         <a class="btn btn-warning btn-abort" href="{{ path('mm_cmf_admin_routing_addon_noderoute') }}">
                             <i class="fa fa-close"></i> abbrechen
                         </a>
                     </div>
                 {% endset %}
-                {{ form_start(form) }}
+
+
+                {{ form_start(data.form) }}
                 <div class="form-main">
-                    {{ form_rest(form) }}
+                    {{ form_rest(data.form) }}
                 </div>
                 <div class="form-foot">
                     {{ buttongroup }}
                 </div>
-                {{ form_end(form) }}
+                {{ form_end(data.form) }}
             {% endblock %}
         </div>
     </div>

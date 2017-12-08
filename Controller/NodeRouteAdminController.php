@@ -62,22 +62,27 @@ class NodeRouteAdminController extends BaseController
     /**
      * @param Request $request
      * @param $node_route_type
-     * @return mixed
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function newAction(Request $request, $node_route_type)
     {
 
         $page = null;
 
+        $factory = $this->get('mm_cmf_routing.node_route_factory');
+        $entity = $factory->createNodeRoute($node_route_type);
+
         if($page_id = (int) $request->get('page'))
         {
             $page = $this->getDoctrine()->getRepository(Page::class)->find($page_id);
+
+            $page->addRoute($entity);
+        }else
+        {
+
         }
 
-        $factory = $this->get('mm_cmf_routing.node_route_factory');
-
-        $entity = $factory->createNodeRoute($node_route_type);
-        $page->addRoute($entity);
 
         if ($entity) {
 
@@ -88,6 +93,8 @@ class NodeRouteAdminController extends BaseController
                 'form' => $form->createView())
             );
         }
+
+        $this->createNotFoundException();
     }
 
 
@@ -95,6 +102,7 @@ class NodeRouteAdminController extends BaseController
      * @param Request $request
      * @param $node_route_type
      * @return \MandarinMedien\MMAdminBundle\Controller\JsonFormResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
      */
     public function createAction(Request $request, $node_route_type)
     {
@@ -123,8 +131,6 @@ class NodeRouteAdminController extends BaseController
     {
 
         $nodeRoute = $this->getDoctrine()->getRepository(NodeRoute::class)->find($id);
-
-        dump($this->get('mm_cmf_routing.node_resolver')->findNode($nodeRoute));
 
         return $this->render("MMCmfAdminRoutingAddonBundle:NodeRoute:edit.html.twig", array(
             'form' => $this->createEditForm($nodeRoute)->createView(),
