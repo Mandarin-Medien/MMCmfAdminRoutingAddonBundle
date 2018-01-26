@@ -14,15 +14,12 @@
     }
   ],
   "autoload": {
-    "psr-0": {
-      "MandarinMedien\\MMCmfAdminPageAddonBundle": ""
-    }
+    "psr-4": {"MandarinMedien\\MMCmf\\Admin\\RoutingAddonBundle\\": ""}
   },
-  "target-dir": "MandarinMedien/MMCmfAdminPageAddonBundle",
   "require": {
     "mandarinmedien/mmcmfcontentbundle": "^0.1",
     "mandarinmedien/mmcmfroutingbundle": "^0.1",
-    "mandarinmedien/mmadminbundle": "@dev-master"
+    "mandarinmedien/mmadminbundle": "^0.3.0"
   },
   "suggest": {
 
