@@ -35,7 +35,8 @@ class NodeRouteType extends AbstractType
         if (get_class($options['data']) != ExternalNodeRoute::class) {
             $builder->add('node', EntityType::class, array(
                 'class' => Page::class,
-                'required' => true
+                'required' => true,
+                'mapped' => false
             ));
         }
 
